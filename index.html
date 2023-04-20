@@ -11,7 +11,7 @@
     }
     img {
       display: none;
-      max-width: 100%;
+      max-width: 50%; /* set the maximum width to 50% */
       height: auto;
       cursor: pointer;
       transform: scale(0.6); /* add this line for 60% size reduction */
@@ -20,10 +20,12 @@
   <script>
     var images = ["gatcha%20assets/1.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/4.jpg", "gatcha%20assets/5.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/3.jpg"];
     var index = 0;
-    var delay = 8000; // 8 seconds
+    var delay = 1000; // 1 seconds
+    var isTransitioning = false;
 
     function replaceTextWithImage() {
       document.getElementById('text').style.display = 'none';
+      startAnimation();
       document.getElementById('image').style.display = 'inline-block';
     }
 
@@ -34,29 +36,34 @@
       }
       var img = document.getElementById("image");
       img.src = images[index];
-      setTimeout(transitionImage, delay);
+      isTransitioning = false;
+    }
+
+    function debounce(func, wait) {
+      var timeout;
+      return function() {
+        var context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+          timeout = null;
+          func.apply(context, args);
+        }, wait);
+      };
+    }
+
+    function startAnimation() {
+      var img = document.getElementById("image");
+      var i = 0;
+      var interval = setInterval(function() {
+        img.src = images[i];
+        i++;
+        if (i >= images.length) {
+          i = 0;
+        }
+      }, 200); // Change the interval time to make the animation faster or slower
     }
 
     document.addEventListener("DOMContentLoaded", function() {
       var img = document.getElementById("image");
       img.src = images[0];
       img.addEventListener("click", function() {
-        document.getElementById('text').style.display = 'inline-block';
-        document.getElementById('image').style.display = 'none';
-      });
-      img.addEventListener("mousemove", function(e) {
-        if (e.target == img) {
-          transitionImage();
-        }
-      });
-    });
-  </script>
-</head>
-<body>
-  <div>
-    <h1 id="text" onclick="replaceTextWithImage()">how are you feeling?</h1>
-    <img id="image" src="" alt="placeholder image">
-  </div>
-</body>
-</html>
-
