@@ -14,23 +14,56 @@
       max-width: 100%;
       height: auto;
       cursor: pointer;
+      transform: scale(0.6); /* add this line for 60% size reduction */
     }
   </style>
   <script>
+    var images = ["gatcha%20assets/1.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/4.jpg", "gatcha%20assets/5.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/3.jpg"];
+    var index = 0;
+    var delay = 3000; // 3 seconds
+    var isTransitioning = false;
+
     function replaceTextWithImage() {
       document.getElementById('text').style.display = 'none';
       document.getElementById('image').style.display = 'inline-block';
-      var images = ["gatcha%20assets/1.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/4.jpg", "gatcha%20assets/5.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/3.jpg"];
-      var index = 0;
-      setInterval(function() {
-        var img = document.getElementById("image");
-        img.src = images[index];
-        index++;
-        if (index >= images.length) {
-          index = 0;
-        }
-      }, 3000);
     }
+
+    function transitionImage() {
+      index++;
+      if (index >= images.length) {
+        index = 0;
+      }
+      var img = document.getElementById("image");
+      img.src = images[index];
+      isTransitioning = false;
+    }
+
+    function debounce(func, wait) {
+      var timeout;
+      return function() {
+        var context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+          timeout = null;
+          func.apply(context, args);
+        }, wait);
+      };
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var img = document.getElementById("image");
+      img.src = images[0];
+      img.addEventListener("click", function() {
+        document.getElementById('text').style.display = 'inline-block';
+        document.getElementById('image').style.display = 'none';
+      });
+      img.addEventListener("mousemove", debounce(function(e) {
+        if (!isTransitioning && e.target == img) {
+          isTransitioning = true;
+          setTimeout(transitionImage, delay);
+        }
+      }, 50));
+    });
   </script>
 </head>
 <body>
