@@ -1,71 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Replace text with an image on click</title>
-  <style>
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    img {
-      display: none;
-      max-width: 50%;
-      height: auto;
-      cursor: pointer;
-      transform: scale(0.6);
-      margin: 0 auto;
-    }
-  </style>
-  <script>
-    var images = ["gatcha%20assets/1.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/4.jpg", "gatcha%20assets/5.jpg", "gatcha%20assets/6.jpg", "gatcha%20assets/7.jpg"];
-    var index = 0;
-    var delay = 5000; // 5 seconds
-    var isTransitioning = false;
-    var timer;
+	<title>Image Transition Example</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #fff; 
+		}
+		
+		#container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+		}
 
-    function replaceTextWithImage() {
-      document.getElementById('text').style.display = 'none';
-      document.getElementById('image').style.display = 'inline-block';
-      var img = document.getElementById("image");
-      img.addEventListener("load", startTransition);
-      img.src = images[index];
-    }
+		#image-container {
+			display: none;
+			text-align: center;
+		}
 
-    function startTransition() {
-      timer = setInterval(transitionImage, delay);
-    }
-
-    function transitionImage() {
-      isTransitioning = true;
-      index++;
-      if (index >= images.length) {
-        index = 0;
-      }
-      var img = document.getElementById("image");
-      img.src = images[index];
-    }
-
-    function stopTransition() {
-      clearInterval(timer);
-      index = 0;
-      isTransitioning = false;
-      replaceTextWithImage();
-      document.getElementById('image').style.display = 'none';
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-      var img = document.getElementById("image");
-      img.src = images[0];
-      img.addEventListener("click", stopTransition);
-    });
-  </script>
+		#image-container img {
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: contain;
+			margin: 0 auto;
+		}
+	</style>
 </head>
 <body>
-  <div>
-    <h1 id="text" onclick="replaceTextWithImage()">how are you feeling?</h1>
-    <img id="image" src="" alt="gatcha%20assets/1.jpeg">
-  </div>
+	<div id="container">
+		<p id="text" onclick="showImages()">how are you feeling?</p>
+		<div id="image-container"></div>
+	</div>
+	
+	<script>
+		function showImages() {
+			const images = [
+				"/gatcha%20assets/1.jpeg",
+				"/gatcha%20assets/2.jpeg",
+				"/gatcha%20assets/3.jpeg",
+				"/gatcha%20assets/4.jpeg",
+				"/gatcha%20assets/5.jpeg",
+        "/gatcha%20assets/6.jpeg",
+        "/gatcha%20assets/7.jpeg"
+			];
+
+			const imageContainer = document.getElementById("image-container");
+
+			images.forEach((image, index) => {
+				const img = new Image();
+				img.src = image;
+				img.onload = function() {
+					imageContainer.appendChild(img);
+
+					if (index === images.length - 1) {
+						img.style.display = "block";
+					} else {
+						setTimeout(() => {
+							img.style.display = "block";
+						}, 1000 * index);
+					}
+				}
+			});
+
+			document.getElementById("text").style.display = "none";
+			imageContainer.style.display = "block";
+		}
+	</script>
 </body>
 </html>
