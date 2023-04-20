@@ -24,7 +24,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 140%;
+        font-size: 40px;
       }
       
       #my-gif {
@@ -35,15 +35,10 @@
       }
 
       #restart-button {
-        display: none;
         position: absolute;
-        top: 100%;
+        top: 40%;
         left: 50%;
-        transform: translate(-50%, 50%);
-      }
-
-      #my-image:hover + #restart-button {
-        display: block;
+        transform: translate(-50%, 0);
       }
     </style>
     <script>
@@ -59,7 +54,7 @@
           gif.style.display = "none";
           image.src = randomImage;
           image.style.display = "inline-block";
-          document.getElementById("restart-button").style.display = "block";
+          restartButton.style.display = "inline-block";
         }, 5000);
       }
 
@@ -69,13 +64,14 @@
     </script>
   </head>
   <body>
-    <p id="my-text" onclick="displayGif()">how are you feeling?</p>
+    <p id="my-text" onclick="displayGif()">hehehehe</p>
     <img class="centered" src="gif/greentext1.jpg" alt="My Image" style="display: none;">
     <img class="centered" src="gif/greentext2.jpg" alt="My Image" style="display: none;">
     <img class="centered" src="gif/greentext3.jpg" alt="My Image" style="display: none;">
     <img id="my-gif" src="gif/greengif.gif" alt="My GIF" style="display: none;">
     <img id="my-image" src="" alt="My Image" style="display: none;">
-    <button id="restart-button" onclick="restartPage()">Restart</button>
+    <button id="restart-button" onclick="restartPage()" style="display: none;">Restart</button>
   </body>
 </html>
+
 
