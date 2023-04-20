@@ -25,9 +25,10 @@
     var index = 0;
     function transitionImage() {
       index = (index + 1) % images.length;
-      document.getElementById("image").src = images[index];
+      (var i =0; i <images.length; i++)
+      document.getElementById("image").src = images[i];
     }
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", func3tion() {
       var img = document.getElementById("image");
       img.addEventListener("mouseover", transitionImage);
     });
