@@ -32,6 +32,12 @@
         left: 50%;
         transform: translate(-50%, -50%) scale(0.6);
       }
+
+      #restart-button {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+      }
     </style>
     <script>
       function displayGif() {
@@ -48,6 +54,10 @@
           image.style.display = "inline-block";
         }, 5000);
       }
+
+      function restartPage() {
+        location.reload();
+      }
     </script>
   </head>
   <body>
@@ -57,6 +67,7 @@
     <img class="centered" src="gif/greentext3.jpg" alt="My Image" style="display: none;">
     <img id="my-gif" src="gif/greengif.gif" alt="My GIF" style="display: none;">
     <img id="my-image" src="" alt="My Image" style="display: none;">
+    <button id="restart-button" onclick="restartPage()">Restart</button>
   </body>
 </html>
 
