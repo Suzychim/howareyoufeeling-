@@ -39,7 +39,7 @@
 			transition: opacity 1s ease-in-out;
 		}
 		
-		#image-container img:last-child {
+		#image-container img:first-child {
 			opacity: 1;
 		}
 	</style>
@@ -70,11 +70,12 @@
 				img.onload = function() {
 					imageContainer.appendChild(img);
 
-					if (index === images.length - 1) {
-						img.style.display = "block";
+					if (index === 0) {
+						img.style.opacity = 1;
 					} else {
 						setTimeout(() => {
-							img.style.display = "block";
+							img.style.opacity = 1;
+							imageContainer.children[index - 1].style.opacity = 0;
 						}, 1000 * index);
 					}
 				}
