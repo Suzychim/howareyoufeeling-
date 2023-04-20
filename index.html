@@ -9,9 +9,15 @@
       justify-content: center;
       height: 100vh;
     }
-    img {
-      display: none;
+    .image-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
       max-width: 50%;
+    }
+    img {
+      max-width: 100%;
       height: auto;
       cursor: pointer;
     }
@@ -23,9 +29,16 @@
     var isTransitioning = false;
     var timer;
 
+    function preloadImages() {
+      for (var i = 0; i < images.length; i++) {
+        var img = new Image();
+        img.src = images[i];
+      }
+    }
+
     function replaceTextWithImage() {
       document.getElementById('text').style.display = 'none';
-      document.getElementById('image').style.display = 'inline-block';
+      document.getElementById('image-container').style.display = 'flex';
       timer = setInterval(transitionImage, delay);
     }
 
@@ -44,10 +57,11 @@
       index = 0;
       isTransitioning = false;
       document.getElementById('text').style.display = 'inline-block';
-      document.getElementById('image').style.display = 'none';
+      document.getElementById('image-container').style.display = 'none';
     }
 
     document.addEventListener("DOMContentLoaded", function() {
+      preloadImages();
       var img = document.getElementById("image");
       img.src = images[0];
       img.addEventListener("click", stopTransition);
@@ -57,7 +71,9 @@
 <body>
   <div>
     <h1 id="text" onclick="replaceTextWithImage()">how are you feeling?</h1>
-    <img id="image" src="" alt="placeholder image">
+    <div class="image-container" id="image-container">
+      <img id="image" src="" alt="placeholder image">
+    </div>
   </div>
 </body>
 </html>
