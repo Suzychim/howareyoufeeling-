@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-	<style>
-		header {
-			display: none;
-		}
-		body {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 100vh;
-			margin: 0;
-			padding: 0;
-		}
-	</style>
-</head>
-<body>
-	<img id="my-gif" src="gif/greengif.gif" alt="GIF" onclick="this.src=''; displayRandomImage()">
-	<p id="click-me" onclick="document.getElementById('my-gif').src='gif/greengif.gif'; displayRandomImage()">Click!</p>
-	<div id="random-image"></div>
-	<script>
-		var images = ["gif/greentext.jpg", "gif/greentext2.jpg"];
-		function displayRandomImage() {
-			var randomIndex = Math.floor(Math.random() * images.length);
-			var randomImage = '<img src="' + images[randomIndex] + '" alt="Random image">';
-			document.getElementById('random-image').innerHTML = randomImage;
-		}
-	</script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Page</title>
+    <style>
+      #my-image {
+        display: none;
+      }
+    </style>
+    <script>
+      function displayGif() {
+        var gif = document.getElementById("my-gif");
+        var text = document.getElementById("my-text");
+        gif.style.display = "inline-block";
+        text.style.display = "none";
+        setTimeout(function() {
+          var images = ["green1.jpg", "green2.jpg", "green3.jpg"]; 
+          var randomImage = images[Math.floor(Math.random() * images.length)];
+          var image = document.getElementById("my-image");
+          gif.style.display = "none";
+          image.src = randomImage;
+          image.style.display = "inline-block";
+        }, 5000);
+      }
+    </script>
+  </head>
+  <body>
+    <p id="my-text" onclick="displayGif()">Click me to see a GIF</p>
+    <img id="my-gif" src="gif/greengif.gif" alt="My GIF" style="display: none;">
+    <img id="my-image" src="" alt="My image" style="display: none;">
+  </body>
 </html>
+
