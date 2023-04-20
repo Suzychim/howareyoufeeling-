@@ -23,7 +23,7 @@
 			flex-wrap: nowrap;
 			align-items: center;
 			justify-content: center;
-			height: auto;
+			height: 100%;
 			width: 100%;
 			overflow: hidden;
 		}
@@ -50,6 +50,7 @@
 			transform: translate(-50%, -50%);
 			font-size: 24px;
 			cursor: pointer;
+			display: block;
 		}
 	</style>
 </head>
@@ -78,16 +79,15 @@
 			const showImage = () => {
 				const currentImage = imageContainer.children[currentIndex];
 				const nextIndex = (currentIndex + 1) % images.length;
-				const nextImage = new Image();
+				const nextImage = document.createElement("img");
 				nextImage.src = images[nextIndex];
 				nextImage.onload = () => {
 					currentImage.style.opacity = 0;
 					nextImage.style.opacity = 1;
-					imageContainer.replaceChild(nextImage, currentImage);
+					imageContainer.removeChild(currentImage);
+					imageContainer.appendChild(nextImage);
 					currentIndex = nextIndex;
-					if (currentIndex !== images.length - 1) {
-						setTimeout(showImage, 3000);
-					}
+					setTimeout(showImage, 3000);
 				};
 			};
 			
@@ -97,4 +97,5 @@
 	</script>
 </body>
 </html>
+
 
