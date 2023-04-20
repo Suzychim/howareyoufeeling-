@@ -24,13 +24,25 @@
     var images = ["gatcha%20assets/1.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/4.jpg", "gatcha%20assets/5.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/3.jpg"];
     var index = 0;
     function transitionImage() {
-      for(var i=0; i < images.length; i++)
-      document.getElementById("image").src = images[i];
+  index++;
+  if (index >= images.length) {
+    index = 0;
+  }
+  document.addEventListener("DOMContentLoaded", function() {
+  var img = document.getElementById("image");
+  img.addEventListener("mouseover", function() {
+    setInterval(transitionImage, 1000);
+  });
+  document.addEventListener("mousemove", function(e) {
+    if (e.target == img) {
+      index++;
+      if (index >= images.length) {
+        index = 0;
+      }
+      img.src = images[index];
     }
-    document.addEventListener("DOMContentLoaded", function() {
-      var img = document.getElementById("image");
-      img.addEventListener("mouseover", transitionImage);
-    });
+  });
+});
   </script>
 </head>
 <body>
