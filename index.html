@@ -85,7 +85,9 @@
 					nextImage.style.opacity = 1;
 					imageContainer.replaceChild(nextImage, currentImage);
 					currentIndex = nextIndex;
-					setTimeout(showImage, 2000);
+					if (currentIndex !== images.length - 1) {
+						setTimeout(showImage, 3000);
+					}
 				};
 			};
 			
