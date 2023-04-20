@@ -1,101 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Image Transition Example</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			background-color: #fff; 
-		}
-		
-		#container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			height: 100vh;
-		}
-
-		#image-container {
-			position: relative;
-			display: flex;
-			flex-wrap: nowrap;
-			align-items: center;
-			justify-content: center;
-			height: 100%;
-			width: 100%;
-			overflow: hidden;
-		}
-
-		#image-container img {
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 100%;
-			object-fit: contain;
-			opacity: 0;
-			transition: opacity 1s ease-in-out;
-		}
-		
-		#image-container img:first-child {
-			opacity: 1;
-		}
-		
-		#text {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			font-size: 24px;
-			cursor: pointer;
-			display: block;
-		}
-	</style>
-</head>
-<body>
-	<div id="container">
-		<p id="text" onclick="showImages()">Click to Start</p>
-		<div id="image-container"></div>
-	</div>
-	
-	<script>
-		function showImages() {
-			const images = [
-				"gatcha%20assets/1.jpeg",
-				"gatcha%20assets/2.jpeg",
-				"gatcha%20assets/3.jpeg",
-				"gatcha%20assets/4.jpeg",
-				"gatcha%20assets/5.jpeg",
-				"gatcha%20assets/6.jpeg",
-				"gatcha%20assets/7.jpeg"
-			];
-
-			let currentIndex = 0;
-			const imageContainer = document.getElementById("image-container");
-			const textElement = document.getElementById("text");
-			
-			const showImage = () => {
-				const currentImage = imageContainer.children[currentIndex];
-				const nextIndex = (currentIndex + 1) % images.length;
-				const nextImage = document.createElement("img");
-				nextImage.src = images[nextIndex];
-				nextImage.onload = () => {
-					currentImage.style.opacity = 0;
-					nextImage.style.opacity = 1;
-					imageContainer.removeChild(currentImage);
-					imageContainer.appendChild(nextImage);
-					currentIndex = nextIndex;
-					setTimeout(showImage, 3000);
-				};
-			};
-			
-			textElement.style.display = "none";
-			showImage();
-		}
-	</script>
-</body>
+  <head>
+    <title>Click to Play GIF and Display Random Image</title>
+    <script type="text/javascript">
+      var images = ["gif/greentext.jpg"];
+      
+      function displayRandomImage() {
+        var randomIndex = Math.floor(Math.random() * images.length);
+        var imgTag = "<img src='" + images[randomIndex] + "'>";
+        var imgContainer = document.getElementById("random-image");
+        imgContainer.innerHTML = imgTag;
+      }
+    </script>
+  </head>
+  <body>
+    <p>Click this text to play the GIF and display a random image:</p>
+    <p onclick="document.getElementById('my-gif').src='gif/greengif.gif'; displayRandomImage()">Click me!</p>
+    <br>
+    <img id="my-gif" src="gif/greengif.gif" alt="GIF">
+    <div id="random-image"></div>
+  </body>
 </html>
-
-
