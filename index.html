@@ -9,11 +9,31 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        animation: slide 5s infinite;
+        overflow: hidden;
+      }
+      
+      .image-container img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease-out;
       }
 
-      .image-container.paused {
+      .image-container.paused img {
         animation-play-state: paused;
+      }
+
+      .image-container.paused img:first-child {
+        transform: translateX(0%);
+      }
+
+      .image-container.paused img:not(:first-child) {
+        transform: translateX(-100%);
+      }
+
+      .image-container img:first-child:not(.paused) {
+        animation: slide 5s linear infinite;
       }
 
       @keyframes slide {
@@ -51,13 +71,11 @@
       const container = document.querySelector(".image-container");
       const text = document.querySelector(".text");
 
-      function pauseAnimation() {
-        container.classList.toggle("paused");
+      function startAnimation() {
+        container.classList.remove("paused");
       }
 
-      text.addEventListener("click", pauseAnimation);
+      text.addEventListener("click", startAnimation);
     </script>
   </body>
 </html>
-
-
