@@ -30,6 +30,7 @@
   }
   document.addEventListener("DOMContentLoaded", function() {
   var img = document.getElementById("image");
+  img.src = images[0];
   img.addEventListener("mouseover", function() {
     setInterval(transitionImage, 1000);
   });
