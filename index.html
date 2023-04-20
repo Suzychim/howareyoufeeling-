@@ -15,7 +15,6 @@
 			align-items: center;
 			justify-content: center;
 			height: 100vh;
-			margin-top: 50px; /* add some margin to the top */
 		}
 
 		#image-container {
@@ -40,27 +39,36 @@
 			transition: opacity 1s ease-in-out;
 		}
 		
-		#image-container img:first-child {
+		#image-container img:last-child {
 			opacity: 1;
+		}
+
+		#text {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 30px;
+			cursor: pointer;
 		}
 	</style>
 </head>
 <body>
 	<div id="container">
-		<p id="text" onclick="showImages()">how are you feeling?</p>
 		<div id="image-container"></div>
+		<p id="text" onclick="showImages()">how are you feeling?</p>
 	</div>
 	
 	<script>
 		function showImages() {
 			const images = [
-				"./gatcha assets/1.jpeg",
-				"./gatcha assets/2.jpeg",
-				"./gatcha assets/3.jpeg",
-				"./gatcha assets/4.jpeg",
-				"./gatcha assets/5.jpeg",
-				"./gatcha assets/6.jpeg",
-				"./gatcha assets/7.jpeg"
+				"gatcha%20assets/1.jpeg",
+				"gatcha%20assets/2.jpeg",
+				"gatcha%20assets/3.jpeg",
+				"gatcha%20assets/4.jpeg",
+				"gatcha%20assets/5.jpeg",
+				"gatcha%20assets/6.jpeg",
+				"gatcha%20assets/7.jpeg"
 			];
 
 			const imageContainer = document.getElementById("image-container");
@@ -71,11 +79,11 @@
 				img.onload = function() {
 					imageContainer.appendChild(img);
 
-					if (index === 0) {
-						img.style.opacity = "1";
+					if (index === images.length - 1) {
+						img.style.opacity = 1;
 					} else {
 						setTimeout(() => {
-							img.style.opacity = "1";
+							img.style.opacity = 1;
 						}, 1000 * index);
 					}
 				}
@@ -86,4 +94,3 @@
 	</script>
 </body>
 </html>
-
