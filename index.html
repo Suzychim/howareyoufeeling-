@@ -39,24 +39,24 @@
 			transition: opacity 1s ease-in-out;
 		}
 		
-		#image-container img:last-child {
+		#image-container img:first-child {
 			opacity: 1;
 		}
-
+		
 		#text {
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			font-size: 30px;
+			font-size: 24px;
 			cursor: pointer;
 		}
 	</style>
 </head>
 <body>
 	<div id="container">
+		<p id="text" onclick="showImages()">Click to Start</p>
 		<div id="image-container"></div>
-		<p id="text" onclick="showImages()">how are you feeling?</p>
 	</div>
 	
 	<script>
@@ -71,25 +71,26 @@
 				"gatcha%20assets/7.jpeg"
 			];
 
+			let currentIndex = 0;
 			const imageContainer = document.getElementById("image-container");
-
-			images.forEach((image, index) => {
-				const img = new Image();
-				img.src = image;
-				img.onload = function() {
-					imageContainer.appendChild(img);
-
-					if (index === images.length - 1) {
-						img.style.opacity = 1;
-					} else {
-						setTimeout(() => {
-							img.style.opacity = 1;
-						}, 1000 * index);
-					}
-				}
-			});
-
-			document.getElementById("text").style.display = "none";
+			const textElement = document.getElementById("text");
+			
+			const showImage = () => {
+				const currentImage = imageContainer.children[currentIndex];
+				const nextIndex = (currentIndex + 1) % images.length;
+				const nextImage = new Image();
+				nextImage.src = images[nextIndex];
+				nextImage.onload = () => {
+					currentImage.style.opacity = 0;
+					nextImage.style.opacity = 1;
+					imageContainer.replaceChild(nextImage, currentImage);
+					currentIndex = nextIndex;
+					setTimeout(showImage, 2000);
+				};
+			};
+			
+			textElement.style.display = "none";
+			showImage();
 		}
 	</script>
 </body>
