@@ -18,13 +18,9 @@
     }
   </style>
   <script>
-<<<<<<< HEAD
     var images = ["gatcha%20assets/1.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/4.jpg", "gatcha%20assets/5.jpg", "gatcha%20assets/6.jpg", "gatcha%20assets/7.jpg", "gatcha%20assets/7.jpg"];
-=======
-    var images = ["gatcha%20assets/1.jpg", "gatcha%20assets/2.jpg", "gatcha%20assets/3.jpg", "gatcha%20assets/4.jpg", "gatcha%20assets/5.jpg", "gatcha%20assets/6.jpg", "gatcha%20assets/7.jpg"];
->>>>>>> d1d9b3e8f4c89e682c367d5e3bc61fa0cf12cd58
     var index = 0;
-    var delay = 5000; // 5 seconds
+    var delay = 10000; // 5 seconds
     var isTransitioning = false;
     var timer;
 
@@ -35,6 +31,7 @@
     }
 
     function transitionImage() {
+      isTransitioning = true;
       index++;
       if (index >= images.length) {
         index = 0;
