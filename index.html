@@ -56,20 +56,20 @@
 </head>
 <body>
 	<div id="container">
-		<p id="text" onclick="showImages()">Click to Start</p>
+		<p id="text" onclick="showImages()">Click</p>
 		<div id="image-container"></div>
 	</div>
 	
 	<script>
 		function showImages() {
 			const images = [
-					"gatcha%20assets/1.jpeg",
-					"gatcha%20assets/2.jpeg",
-					"gatcha%20assets/3.jpeg",
-					"gatcha%20assets/4.jpeg",
-					"gatcha%20assets/5.jpeg",
-					"gatcha%20assets/6.jpeg",
-					"gatcha%20assets/7.jpeg"
+				"gatcha%20assets/1.jpeg",
+				"gatcha%20assets/2.jpeg",
+				"gatcha%20assets/3.jpeg",
+				"gatcha%20assets/4.jpeg",
+				"gatcha%20assets/5.jpeg",
+				"gatcha%20assets/6.jpeg",
+				"gatcha%20assets/7.jpeg"
 			];
 
 			let currentIndex = 0;
@@ -82,15 +82,21 @@
 				const nextImage = new Image();
 				nextImage.src = images[nextIndex];
 				nextImage.onload = () => {
+					nextImage.style.opacity = 0;
+					imageContainer.appendChild(nextImage);
 					currentImage.style.opacity = 0;
-					nextImage.style.opacity = 1;
-					imageContainer.replaceChild(nextImage, currentImage);
 					currentIndex = nextIndex;
 					if (currentIndex === images.length - 1) {
-						clearTimeout(timerId);
+						textElement.style.display = "block";
 					}
+					setTimeout(() => {
+						nextImage.style.opacity = 1;
+						imageContainer.removeChild(currentImage);
+						if (currentIndex !== images.length - 1) {
+							showImage();
+						}
+					}, 3000);
 				};
-				const timerId = setTimeout(showImage, 3000);
 			};
 			
 			textElement.style.display = "none";
