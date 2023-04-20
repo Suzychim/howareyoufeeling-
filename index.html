@@ -7,6 +7,13 @@
       #my-image {
         display: none;
       }
+      
+      #my-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     </style>
     <script>
       function displayGif() {
@@ -26,9 +33,10 @@
     </script>
   </head>
   <body>
-    <p id="my-text" onclick="displayGif()">Click me to see a GIF</p>
+    <p id="my-text" onclick="displayGif()">how are you feeling?</p>
     <img id="my-gif" src="gif/greengif.gif" alt="My GIF" style="display: none;">
     <img id="my-image" src="" alt="My image" style="display: none;">
   </body>
 </html>
+
 
