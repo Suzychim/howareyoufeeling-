@@ -27,38 +27,37 @@
 
     function replaceTextWithImage() {
       document.getElementById('text').style.display = 'none';
+      document.getElementById('image').src = images[0];
       document.getElementById('image').style.display = 'inline-block';
-      var img = document.getElementById("image");
-      img.addEventListener("load", startTransition);
-      img.src = images[index];
     }
 
     function startTransition() {
-      timer = setInterval(transitionImage, delay);
+      if (!isTransitioning) {
+        isTransitioning = true;
+        timer = setInterval(transitionImage, delay);
+      }
     }
 
     function transitionImage() {
-      isTransitioning = true;
       index++;
       if (index >= images.length) {
-        index = 0;
+        stopTransition();
+        index = images.length - 1;
+      } else {
+        var img = document.getElementById("image");
+        img.src = images[index];
       }
-      var img = document.getElementById("image");
-      img.src = images[index];
     }
 
     function stopTransition() {
       clearInterval(timer);
-      index = 0;
       isTransitioning = false;
-      document.getElementById('text').style.display = 'inline-block';
-      document.getElementById('image').style.display = 'none';
     }
 
     document.addEventListener("DOMContentLoaded", function() {
       var img = document.getElementById("image");
       img.src = images[0];
-      img.addEventListener("click", stopTransition);
+      img.addEventListener("load", startTransition);
     });
   </script>
 </head>
