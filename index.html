@@ -18,15 +18,29 @@
 		}
 
 		#image-container {
-			display: none;
-			text-align: center;
+			position: relative;
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
 		}
 
 		#image-container img {
-			max-width: 100%;
-			max-height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
 			object-fit: contain;
-			margin: 0 auto;
+			opacity: 0;
+			transition: opacity 1s ease-in-out;
+		}
+		
+		#image-container img:last-child {
+			opacity: 1;
 		}
 	</style>
 </head>
@@ -67,7 +81,6 @@
 			});
 
 			document.getElementById("text").style.display = "none";
-			imageContainer.style.display = "block";
 		}
 	</script>
 </body>
