@@ -28,6 +28,12 @@
     function replaceTextWithImage() {
       document.getElementById('text').style.display = 'none';
       document.getElementById('image').style.display = 'inline-block';
+      var img = document.getElementById("image");
+      img.addEventListener("load", startTransition);
+      img.src = images[index];
+    }
+
+    function startTransition() {
       timer = setInterval(transitionImage, delay);
     }
 
