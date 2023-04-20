@@ -23,7 +23,7 @@
 			flex-wrap: nowrap;
 			align-items: center;
 			justify-content: center;
-			height: 100%;
+			height: auto;
 			width: 100%;
 			overflow: hidden;
 		}
@@ -50,13 +50,12 @@
 			transform: translate(-50%, -50%);
 			font-size: 24px;
 			cursor: pointer;
-			z-index: 1;
 		}
 	</style>
 </head>
 <body>
 	<div id="container">
-		<p id="text" onclick="showImages()">Click</p>
+		<p id="text" onclick="showImages()">Click to Start</p>
 		<div id="image-container"></div>
 	</div>
 	
@@ -82,20 +81,13 @@
 				const nextImage = new Image();
 				nextImage.src = images[nextIndex];
 				nextImage.onload = () => {
-					nextImage.style.opacity = 0;
-					imageContainer.appendChild(nextImage);
 					currentImage.style.opacity = 0;
+					nextImage.style.opacity = 1;
+					imageContainer.replaceChild(nextImage, currentImage);
 					currentIndex = nextIndex;
-					if (currentIndex === images.length - 1) {
-						textElement.style.display = "block";
+					if (currentIndex !== images.length - 1) {
+						setTimeout(showImage, 3000);
 					}
-					setTimeout(() => {
-						nextImage.style.opacity = 1;
-						imageContainer.removeChild(currentImage);
-						if (currentIndex !== images.length - 1) {
-							showImage();
-						}
-					}, 3000);
 				};
 			};
 			
@@ -105,3 +97,4 @@
 	</script>
 </body>
 </html>
+
