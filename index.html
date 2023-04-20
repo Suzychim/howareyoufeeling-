@@ -37,8 +37,13 @@
       #restart-button {
         display: none;
         position: absolute;
-        bottom: 20px;
-        right: 20px;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+      }
+
+      #my-image:hover + #restart-button {
+        display: block;
       }
     </style>
     <script>
@@ -54,7 +59,7 @@
           gif.style.display = "none";
           image.src = randomImage;
           image.style.display = "inline-block";
-          document.getElementById("restart-button").style.display = "inline-block";
+          document.getElementById("restart-button").style.display = "block";
         }, 5000);
       }
 
@@ -64,7 +69,7 @@
     </script>
   </head>
   <body>
-    <p id="my-text" onclick="displayGif()">how are you feeling?</p>
+    <p id="my-text" onclick="displayGif()">hehehehe</p>
     <img class="centered" src="gif/greentext1.jpg" alt="My Image" style="display: none;">
     <img class="centered" src="gif/greentext2.jpg" alt="My Image" style="display: none;">
     <img class="centered" src="gif/greentext3.jpg" alt="My Image" style="display: none;">
