@@ -66,6 +66,14 @@
       function restartPage() {
         location.reload();
       }
+
+      function displayAuthor() {
+      var image = document.getElementById("my-image");
+      var author = "gif/greentextauthor.jpg";
+      image.src = author;
+      
+      }
+
     </script>
   </head>
   <body>
@@ -74,7 +82,7 @@
     <img class="centered" src="gif/greentext2.jpg" alt="My Image" style="display: none;">
     <img class="centered" src="gif/greentext3.jpg" alt="My Image" style="display: none;">
     <img id="my-gif" src="gif/greengif.gif" alt="My GIF" style="display: none;">
-    <img id="my-image" src="" alt="My Image" style="display: none;">
+    <img id="my-image" onclick="displayAuthor()" src="" alt="My Image" style="display: none;">
     <button id="restart-button" onclick="restartPage()">Restart</button>
   </body>
 </html>
