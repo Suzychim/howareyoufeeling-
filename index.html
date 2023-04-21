@@ -69,15 +69,15 @@
 
       function displayAuthor() {
       var image = document.getElementById("my-image");
-      if (image.src.indexOf("green")) {
+     if (image.src.indexOf("green") > 0) {
     var author = "gif/greentextauthor.jpg"
-} else if (image.src.indexOf("blue")) {
+} else if (image.src.indexOf("blue") > 0) {
     var author = "gif/bluetextauthor.jpg"
-} else if (image.src.indexOf("red")) {
+} else if (image.src.indexOf("red") > 0) {
     var author = "gif/redtextauthor.jpg"
-} else if (image.src.indexOf("violet")) {
+} else if (image.src.indexOf("violet") > 0) {
     var author = "gif/violettextauthor.jpg"
-} else if (image.src.indexOf("seaweed")) {
+} else if (image.src.indexOf("seaweed") > 0) {
     var author = "gif/seaweedtextauthor.jpg"
 }
       image.src = author;
