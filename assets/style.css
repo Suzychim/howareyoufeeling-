@@ -9,13 +9,16 @@
 body {
 	font-family: -apple-system, BlinkMacSystemFont, helvetica, arial, sans-serif;
 	transition: background 500ms ease;
+	background: floralwhite;
 }
+
+
 
 p, li {
 	font-size:  22px;
 	line-height: 30px;
 }
-
+3
 /* adjusting spacing */
 
 #left-column {
@@ -31,9 +34,17 @@ ul, ol {
 }
 
 img {
-	max-width: 100%;
+	width: 100%;
 	height:  auto;
 }
+
+#my-image{
+	width: 150%;
+	height:auto;
+	float: left;
+}
+
+
 
 /* uncomment the code below to set the grid */
 
