@@ -34,12 +34,12 @@ ul, ol {
 }
 
 img {
-	width: 100%;
+	width: 160%;
 	height:  auto;
 }
 
 #my-image{
-	width: 150%;
+	width: 240%;
 	height:auto;
 	float: left;
 }
